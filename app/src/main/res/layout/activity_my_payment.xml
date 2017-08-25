@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    android:gravity="center_horizontal"
+    tools:context="cn.zy.base.shopping.mian.center.MyPaymentActivity">
+
+    <include layout="@layout/layout_com_topbar" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACCOUNT BALANCE"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/dp_20"
+        android:textColor="@color/color_black_0D"
+        android:textSize="@dimen/sp_24"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:textColor="#FF6666"
+        android:text="$199.99"
+        />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/shape_radius_grey"
+        android:text="$199.99"
+        />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/shape_radius_blue"
+        android:textColor="@color/color_white"
+        android:text="Top Up $1000"
+        />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/shape_radius_blue"
+        android:textColor="@color/color_white"
+        android:text="Paypal"
+        />
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/shape_radius_edt_bg"
+        android:textColor="@color/colorTextGrey"
+        android:text="Bank Transfer"
+        />
+
+</LinearLayout>

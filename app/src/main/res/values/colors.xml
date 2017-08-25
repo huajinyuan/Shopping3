@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_bg">#F1F1F1</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="color_transparent_90">#90000000</color>
+    <color name="color_transparent_40">#40000000</color>
+    <color name="color_transparent_10">#10000000</color>
+    <color name="press_false">#4488ee</color>
+    <color name="press_true">#0055ee</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorAppRed">#BE0000</color>
+    <color name="colorAppRedPress">#980000</color>
+    <color name="colorBackGrey">#E2E2E2</color>
+    <color name="colorIconMain">#fffcdb</color>
+    <color name="colorGreen">#5BD710</color>
+    <color name="colorMyGreen">#FF34A350</color>
+    <color name="colorMyBlue">#375bf1</color>
+    <color name="colorBlue">#10ABD7</color>
+    <color name="colorDBlue">#49778E</color>
+    <color name="colorOrg">#EAAB3C</color>
+    <color name="colorLuckText">#462200</color>
+    <color name="colorWorshipCsx">#8C3201</color>
+    <color name="colorTextGrey">#959595</color>
+    <color name="main_color">#FA7C20</color>
+    <color name="gray">#333333</color>
+    <color name="yellow">#edbf43</color>
+    <color name="yellow_FD">#FDFBDA</color>
+    <color name="color_yellow_e9">#E9B528</color>
+    <color name="color_fafbfd" >#fafbfd</color>
+    <color name="color_black_0D">#0D0D0D</color>
+    <color name="color_yellow">#FFF7D23E</color>
+    <color name="province_line_border">#D0D0D0</color>
+    <color name="login_button_normal">#169fff</color>
+    <color name="login_button_pressed">#1073b9</color>
+    <color name="colorTextGrey_shop">#6f6f6f</color>
+    <color name="umeng_divide">#C3C6C9</color>
+</resources>
