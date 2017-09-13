@@ -7,6 +7,7 @@
     android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/img_product_pic"
         android:layout_width="@dimen/dp_80"
         android:layout_height="@dimen/dp_80"
         android:layout_margin="@dimen/dp_8"
@@ -34,13 +35,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order Name:"
+                android:text="Title:"
                 android:textColor="@color/color_black_0D" />
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_3"
+                android:lines="1"
                 android:text="20170816" />
         </LinearLayout>
 
@@ -53,15 +56,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status:"
+                android:text="Category:"
                 android:textColor="@color/color_black_0D" />
 
             <TextView
+                android:id="@+id/tv_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_3"
+                android:lines="1"
                 android:text="Processing"
-                android:textColor="@color/login_button_normal" />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -73,14 +78,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Platform:"
+                android:text="Price:"
                 android:textColor="@color/color_black_0D" />
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_3"
-                android:text="General" />
+                android:textColor="@color/colorAppRed"
+                android:lines="1"
+                android:text="$99.99" />
         </LinearLayout>
 
 

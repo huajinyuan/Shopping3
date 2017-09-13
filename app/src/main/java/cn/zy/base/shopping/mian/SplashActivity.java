@@ -7,6 +7,9 @@ import android.view.View;
 
 import cn.zy.base.shopping.R;
 import cn.zy.base.shopping.mian.login.LoginActivity;
+import cn.zy.base.shopping.mian.login.m.LoginData;
+import cn.zy.base.shopping.utils.ACache;
+import cn.zy.base.shopping.utils.ACacheKey;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,9 +21,17 @@ public class SplashActivity extends AppCompatActivity {
         view.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                SplashActivity.this.finish();
+                LoginData loginData = (LoginData) ACache.get(SplashActivity.this).getAsObject(ACacheKey.CURRENT_ACCOUNT);
+                if (null!= loginData){
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
+                }else {
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
+                }
+
             }
         }, 3000);
     }

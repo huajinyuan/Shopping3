@@ -3,7 +3,13 @@ package cn.zy.base.shopping.mian;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.gt.okgo.OkGo;
+import com.gt.okgo.model.HttpParams;
+import com.gt.okgo.request.GetRequest;
+import com.gt.okgo.request.PostRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +19,17 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.zy.base.shopping.base.BaseFragment;
 import cn.zy.base.shopping.R;
+import cn.zy.base.shopping.http.Config;
+import cn.zy.base.shopping.http.HttpMethods;
+import cn.zy.base.shopping.http.Parsing;
 import cn.zy.base.shopping.mian.design.PublicDesignsActivity;
+import cn.zy.base.shopping.mian.design.m.Dashboard;
+import cn.zy.base.shopping.mian.login.LoginActivity;
+import cn.zy.base.shopping.mian.login.m.LoginData;
 import cn.zy.base.shopping.mian.product.ProductsActivity;
+import cn.zy.base.shopping.utils.ACache;
+import cn.zy.base.shopping.utils.ACacheKey;
+import cn.zy.base.shopping.utils.ToastUtil;
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.Line;
@@ -24,6 +39,8 @@ import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
+import okhttp3.Response;
+import rx.Subscriber;
 
 
 /**
@@ -49,14 +66,16 @@ public class FragmentDashboard extends BaseFragment {
     private boolean hasGradientToTransparent = false;
 
     private Unbinder unbinder;
+    Context mContext;
+    TextView tv_Balance;
+    TextView tv_Products;
+    TextView tv_Payment;
+    TextView tv_Designs;
 
     @Override
     public int getLayout() {
-
         return R.layout.fragment_home_a;
-
     }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -66,44 +85,27 @@ public class FragmentDashboard extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-
     }
-
     @Override
     public void initData(View view) {
+        mContext = getActivity();
         unbinder = ButterKnife.bind(this, view);
-
         chart = (LineChartView) view.findViewById(R.id.chart);
+        tv_Balance = (TextView) view.findViewById(R.id.tv_Balance);
+        tv_Products = (TextView) view.findViewById(R.id.tv_Products);
+        tv_Payment = (TextView) view.findViewById(R.id.tv_Payment);
+        tv_Designs = (TextView) view.findViewById(R.id.tv_Designs);
         chart.setOnValueTouchListener(new ValueTouchListener());
-
         // Generate some random values.
         generateValues();
         generateData();
-
         // Disable viewport recalculations, see toggleCubic() method for more info.
         chart.setViewportCalculationEnabled(false);
 
         resetViewport();
         addLineToData();
+        getDashboard();
     }
-
-//    @OnClick({R.id.lin_product, R.id.lin_design})
-//    public void OnClick(View v) {
-//        Intent intent;
-//        switch (v.getId()) {
-//            case R.id.lin_product:
-//                intent = new Intent(getActivity(), ProductsActivity.class);
-//                getActivity().startActivity(intent);
-//                break;
-//            case R.id.lin_design:
-//                intent = new Intent(getActivity(), PublicDesignsActivity.class);
-//                getActivity().startActivity(intent);
-//                break;
-//        }
-//    }
-
-
     private void generateValues() {
         for (int i = 0; i < maxNumberOfLines; ++i) {
             for (int j = 0; j < numberOfPoints; ++j) {
@@ -198,10 +200,39 @@ public class FragmentDashboard extends BaseFragment {
         }
 
     }
-
     @Override
     public void onDestroy() {
         unbinder.unbind();
         super.onDestroy();
+    }
+    public void getDashboard()
+    {
+        HttpParams params = HttpMethods.getInstance().getHttpParams();
+         GetRequest request = OkGo.get(Config.DASHBOARD).params(params);
+        HttpMethods.getInstance().doGet(request, true).subscribe(new Subscriber<Response>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtil.showToast("请求失败，请检查网络", mContext);
+            }
+
+            @Override
+            public void onNext(Response response) {
+                if (response.code()==200){
+                    Dashboard dash = Parsing.getInstance().ResponseToObject(response,Dashboard.class).getData();
+                    tv_Balance.setText(dash.getAccount_balance());
+                    tv_Designs.setText(dash.getTotal_public_designs());
+                    tv_Payment.setText(dash.getTotal_pending_payments());
+                    tv_Products.setText(dash.getTotal_products());
+                }else {
+                    ToastUtil.showToast("Fail",mContext);
+
+                }
+            }
+        });
     }
 }

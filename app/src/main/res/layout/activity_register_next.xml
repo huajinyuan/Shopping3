@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
         android:layout_marginLeft="@dimen/dp_40"
         android:layout_marginRight="@dimen/dp_40"
         android:orientation="vertical">
@@ -20,66 +20,94 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="Phone"
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
         <EditText
-            android:id="@+id/edt_name"
+            android:id="@+id/edt_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="Focus"
+            android:text="400-111-111"
             android:textSize="@dimen/sp_14" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
-            android:text="Email"
+            android:text="Country"
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
         <EditText
-            android:id="@+id/edt_email"
+            android:id="@+id/edt_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="Focus@qq.com"
+            android:text="US"
             android:textSize="@dimen/sp_14" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
-            android:text="Password"
+            android:text="Site Url"
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
         <EditText
-            android:id="@+id/edt_password"
+            android:id="@+id/edt_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:paddingLeft="20dp"
-            android:text="123456"
+            android:text="http://www.test.com"
             android:textSize="@dimen/sp_14" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
-            android:text="Password Confirmation"
+            android:text="Whice platform do you use?"
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
         <EditText
-            android:id="@+id/edt_password2"
+            android:id="@+id/edt_platform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:paddingLeft="20dp"
-            android:text="123456"
+            android:text="Amazon"
+            android:textSize="@dimen/sp_14" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="Monthly Sales"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="@dimen/sp_14" />
+
+        <EditText
+            android:id="@+id/edt_manthly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="5000"
+            android:textSize="@dimen/sp_14" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="What are main of your Customers from?"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="@dimen/sp_14" />
+
+        <EditText
+            android:id="@+id/edt_customers_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="Europe"
             android:textSize="@dimen/sp_14" />
 
         <LinearLayout
@@ -89,13 +117,23 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_action_next"
+                android:id="@+id/tv_action_back"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_35"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radius_edt_bg"
+                android:gravity="center"
+                android:text="Go Back"
+                android:textColor="@color/colorTextGrey" />
+            <TextView
+                android:id="@+id/tv_action_applay"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_35"
                 android:layout_weight="1"
                 android:background="@drawable/shape_radius_black"
                 android:gravity="center"
-                android:text="NEXT"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:text="Apply"
                 android:textColor="@color/color_white" />
 
 

@@ -48,10 +48,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_Balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="$123456"
                     android:textColor="#3FAA46"
                     android:textSize="24sp" />
 
@@ -76,10 +76,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_Products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="56234"
                     android:textColor="#1EC4E7"
                     android:textSize="24sp" />
 
@@ -113,10 +113,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_Payment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="52"
                     android:textColor="#FF6666"
                     android:textSize="24sp" />
 
@@ -142,10 +142,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_Designs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="123456"
                     android:textColor="#1EC4E7"
                     android:textSize="24sp" />
 
