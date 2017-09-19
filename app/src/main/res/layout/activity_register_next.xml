@@ -40,13 +40,20 @@
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
-        <EditText
-            android:id="@+id/edt_country"
+        <!--<EditText-->
+            <!--android:id="@+id/edt_country"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:text="US"-->
+            <!--android:textSize="@dimen/sp_14" />-->
+        <Spinner
+            android:id="@+id/spinner_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="US"
-            android:textSize="@dimen/sp_14" />
+            android:background="@drawable/shape_radius_white"
+            android:entries="@array/country_value"
+            android:minHeight="@dimen/dp_40" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,13 +79,21 @@
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
-        <EditText
-            android:id="@+id/edt_platform"
+        <!--<EditText-->
+            <!--android:id="@+id/edt_platform"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:text="Amazon"-->
+            <!--android:textSize="@dimen/sp_14" />-->
+
+        <Spinner
+            android:id="@+id/spinner_platform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Amazon"
-            android:textSize="@dimen/sp_14" />
+            android:background="@drawable/shape_radius_white"
+            android:entries="@array/store_platform"
+            android:minHeight="@dimen/dp_40" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,13 +102,20 @@
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
-        <EditText
-            android:id="@+id/edt_manthly"
+        <!--<EditText-->
+            <!--android:id="@+id/edt_manthly"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:text="5000"-->
+            <!--android:textSize="@dimen/sp_14" />-->
+        <Spinner
+            android:id="@+id/spinner_Sales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="5000"
-            android:textSize="@dimen/sp_14" />
+            android:background="@drawable/shape_radius_white"
+            android:entries="@array/store_sales"
+            android:minHeight="@dimen/dp_40" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,13 +124,20 @@
             android:textColor="@color/colorTextGrey"
             android:textSize="@dimen/sp_14" />
 
-        <EditText
-            android:id="@+id/edt_customers_from"
+        <!--<EditText-->
+            <!--android:id="@+id/edt_customers_from"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:text="Europe"-->
+            <!--android:textSize="@dimen/sp_14" />-->
+        <Spinner
+            android:id="@+id/spinner_customers_from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Europe"
-            android:textSize="@dimen/sp_14" />
+            android:background="@drawable/shape_radius_white"
+            android:entries="@array/store_client_area"
+            android:minHeight="@dimen/dp_40" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/img_avatar"
             android:layout_width="@dimen/dp_80"
             android:layout_height="@dimen/dp_80"
             android:layout_centerInParent="true"
@@ -35,6 +36,7 @@
             android:textSize="@dimen/sp_14" />
 
         <EditText
+            android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -50,6 +52,7 @@
             android:textSize="@dimen/sp_14" />
 
         <EditText
+            android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -80,6 +83,7 @@
             android:textSize="@dimen/sp_14" />
 
         <EditText
+            android:id="@+id/edt_store_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"

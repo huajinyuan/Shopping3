@@ -6,11 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 import cn.zy.base.shopping.mian.design.DesignInfoActivity;
 import cn.zy.base.shopping.R;
+import cn.zy.base.shopping.mian.design.IItemAddBack;
+import cn.zy.base.shopping.mian.design.m.PublishDesignInfo;
 
 
 /**
@@ -18,11 +24,13 @@ import cn.zy.base.shopping.R;
  */
 public class PublicDesignAdapter extends RecyclerView.Adapter<PublicDesignAdapter.AnchorHotViewHolder> {
     private Context mContext;
-    private ArrayList<String> mData;
+    private ArrayList<PublishDesignInfo> mData;
+    private IItemAddBack itemAddBack;
 
-    public PublicDesignAdapter(Context mContext, ArrayList<String> mData) {
+    public PublicDesignAdapter(Context mContext, ArrayList<PublishDesignInfo> mData, IItemAddBack itemAddBack) {
         this.mContext = mContext;
         this.mData = mData;
+        this.itemAddBack = itemAddBack;
     }
 
     @Override
@@ -34,13 +42,35 @@ public class PublicDesignAdapter extends RecyclerView.Adapter<PublicDesignAdapte
 
     @Override
     public void onBindViewHolder(final AnchorHotViewHolder holder, final int position) {
+        PublishDesignInfo info = mData.get(position);
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DesignInfoActivity.class);
+                intent.putExtra("PublishDesignInfo", mData.get(position));
                 mContext.startActivity(intent);
             }
         });
+        holder.tv_title.setText(info.getTitle());
+        holder.tv_price.setText("$" + info.getPrice_range());
+        holder.tv_user.setText(info.getUser());
+        if (null != info.getImages() && !info.getImages().isEmpty()) {
+            Glide.with(mContext).load(info.getImages().get(0)).into(holder.img_pic);
+        }
+
+        if (info.getIs_in_wishlist()) {
+            holder.tv_action_add.setVisibility(View.GONE);
+            holder.tv_added.setVisibility(View.VISIBLE);
+        } else {
+            holder.tv_action_add.setVisibility(View.VISIBLE);
+            holder.tv_added.setVisibility(View.GONE);
+            holder.tv_action_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemAddBack.itemAddBack(mData.get(position));
+                }
+            });
+        }
     }
 
     @Override
@@ -55,12 +85,22 @@ public class PublicDesignAdapter extends RecyclerView.Adapter<PublicDesignAdapte
 
     class AnchorHotViewHolder extends RecyclerView.ViewHolder {
         View item;
+        TextView tv_title;
+        TextView tv_price;
+        TextView tv_user;
+        TextView tv_action_add;
+        TextView tv_added;
+        ImageView img_pic;
 
-        //        TextView actionEdit;
         public AnchorHotViewHolder(View itemView) {
             super(itemView);
             this.item = itemView;
-//            this.actionEdit = (TextView) itemView.findViewById(R.id.tv_action_edit);
+            this.tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            this.tv_price = (TextView) itemView.findViewById(R.id.tv_price);
+            this.tv_user = (TextView) itemView.findViewById(R.id.tv_user);
+            this.tv_action_add = (TextView) itemView.findViewById(R.id.tv_action_add);
+            this.tv_added = (TextView) itemView.findViewById(R.id.tv_added);
+            this.img_pic = (ImageView) itemView.findViewById(R.id.img_pic);
         }
     }
 }

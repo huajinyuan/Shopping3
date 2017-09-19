@@ -21,16 +21,16 @@ public class SplashActivity extends AppCompatActivity {
         view.postDelayed(new Runnable() {
             @Override
             public void run() {
-                LoginData loginData = (LoginData) ACache.get(SplashActivity.this).getAsObject(ACacheKey.CURRENT_ACCOUNT);
-                if (null!= loginData){
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    SplashActivity.this.finish();
-                }else {
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    SplashActivity.this.finish();
-                }
+//                LoginData loginData = (LoginData) ACache.get(SplashActivity.this).getAsObject(ACacheKey.CURRENT_ACCOUNT);
+//                if (null!= loginData){
+//                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    SplashActivity.this.finish();
+//                }else {
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(intent);
+                SplashActivity.this.finish();
+//                }
 
             }
         }, 3000);

@@ -1,17 +1,34 @@
 package cn.zy.base.shopping.mian;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gt.okgo.OkGo;
 import com.gt.okgo.model.HttpParams;
 import com.gt.okgo.request.GetRequest;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
+import com.paypal.android.sdk.payments.PayPalItem;
+import com.paypal.android.sdk.payments.PayPalOAuthScopes;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalPaymentDetails;
+import com.paypal.android.sdk.payments.PayPalProfileSharingActivity;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.ShippingAddress;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +37,7 @@ import cn.zy.base.shopping.base.BaseFragment;
 import cn.zy.base.shopping.http.Config;
 import cn.zy.base.shopping.http.HttpMethods;
 import cn.zy.base.shopping.http.Parsing;
+import cn.zy.base.shopping.mian.order.IOrderitemBack;
 import cn.zy.base.shopping.mian.order.m.OrderInfo;
 import cn.zy.base.shopping.mian.order.m.OrderList;
 import cn.zy.base.shopping.mian.product.m.ProductInfo;
@@ -37,7 +55,11 @@ import rx.Subscriber;
 /**
  * Created by gtgs on 2016/9/2.
  */
-public class FragmentOrder extends BaseFragment {
+public class FragmentOrder extends BaseFragment implements IOrderitemBack {
+
+
+
+
     LinearLayoutManager manager;
     ArrayList<OrderInfo> mData = new ArrayList<>();
     OrderAdapter adapter;
@@ -71,13 +93,6 @@ public class FragmentOrder extends BaseFragment {
         imgRight.setVisibility(View.VISIBLE);
         mTvTitle.setText("Order");
         getOrderData();
-//        ArrayList<String> data = new ArrayList<>();
-//        data.add("");
-//        data.add("");
-//        data.add("");
-//        data.add("");
-//        data.add("");
-//        setData(data);
     }
 
     public void setData(ArrayList<OrderInfo> data) {
@@ -86,7 +101,7 @@ public class FragmentOrder extends BaseFragment {
         if (null == adapter) {
             manager = new LinearLayoutManager(getActivity());
             mRec.addItemDecoration(new DividerGridItemDecoration(getActivity()));
-            adapter = new OrderAdapter(getActivity(), mData);
+            adapter = new OrderAdapter(getActivity(), mData, this);
             mRec.setAdapter(adapter);
             mRec.setLayoutManager(manager);
             int spac = PixelUtil.dp2px(this.getActivity(), 8);
@@ -96,8 +111,8 @@ public class FragmentOrder extends BaseFragment {
             adapter.notifyDataSetChanged();
         }
     }
-    public void getOrderData()
-    {
+
+    public void getOrderData() {
         HttpParams params = HttpMethods.getInstance().getHttpParams();
         GetRequest request = OkGo.get(Config.ORDER_GROUPS).params(params);
         HttpMethods.getInstance().doGet(request, true).subscribe(new Subscriber<Response>() {
@@ -113,20 +128,31 @@ public class FragmentOrder extends BaseFragment {
 
             @Override
             public void onNext(Response response) {
-                if (response.code()==200){
-                    OrderList list = Parsing.getInstance().ResponseToObject(response,OrderList.class).getData();
+                if (response.code() == 200) {
+                    OrderList list = Parsing.getInstance().ResponseToObject(response, OrderList.class).getData();
                     ArrayList<OrderInfo> datas = list.getOrders();
                     setData(datas);
-                }else {
-                    ToastUtil.showToast("Fail",mContext);
+                } else {
+                    ToastUtil.showToast("Fail", mContext);
 
                 }
             }
         });
     }
+
     @Override
     public void onDestroy() {
         unbinder.unbind();
         super.onDestroy();
     }
+
+    @Override
+    public void back(OrderInfo o) {
+//        onBuyPressed();
+    }
+
+
+
+
+
 }

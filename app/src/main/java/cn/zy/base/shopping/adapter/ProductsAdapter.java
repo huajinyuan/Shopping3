@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import cn.zy.base.shopping.R;
+import cn.zy.base.shopping.mian.product.IItemClickBack;
 import cn.zy.base.shopping.mian.product.ProductInfoActivity;
 import cn.zy.base.shopping.mian.product.m.ProductInfo;
 
@@ -22,10 +25,12 @@ import cn.zy.base.shopping.mian.product.m.ProductInfo;
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.AnchorHotViewHolder> {
     private Context mContext;
     private ArrayList<ProductInfo> mData;
+    private IItemClickBack clickBack;
 
-    public ProductsAdapter(Context mContext, ArrayList<ProductInfo> mData) {
+    public ProductsAdapter(Context mContext, ArrayList<ProductInfo> mData, IItemClickBack clickBack) {
         this.mContext = mContext;
         this.mData = mData;
+        this.clickBack = clickBack;
     }
 
     @Override
@@ -45,9 +50,21 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Anchor
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, ProductInfoActivity.class);
+                intent.putExtra("product", mData.get(position));
                 mContext.startActivity(intent);
             }
         });
+        holder.actionDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickBack.itemback(mData.get(position));
+            }
+        });
+        if (null != info.getImages() && !info.getImages().isEmpty()) {
+
+            Glide.with(mContext).load(info.getImages().get(0)).into(holder.img_product_pic);
+        }
+
     }
 
     @Override
@@ -63,6 +80,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Anchor
     class AnchorHotViewHolder extends RecyclerView.ViewHolder {
         View item;
         TextView actionEdit;
+        TextView actionDelete;
         TextView tv_name;
         TextView tv_category;
         TextView tv_price;
@@ -72,6 +90,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Anchor
             super(itemView);
             this.item = itemView;
             this.actionEdit = (TextView) itemView.findViewById(R.id.tv_action_edit);
+            this.actionDelete = (TextView) itemView.findViewById(R.id.tv_action_delete);
             this.tv_name = (TextView) itemView.findViewById(R.id.tv_name);
             this.tv_category = (TextView) itemView.findViewById(R.id.tv_category);
             this.tv_price = (TextView) itemView.findViewById(R.id.tv_price);

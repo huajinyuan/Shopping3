@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".mian.SApplication"
         android:allowBackup="true"
@@ -28,7 +29,9 @@
         </activity>
         <activity android:name=".mian.login.LoginActivity" />
         <activity android:name=".mian.login.RegisterActivity" />
-        <activity android:name=".mian.login.RegisterNextActivity"></activity>
+        <activity android:name=".mian.login.RegisterNextActivity" />
+        <activity android:name=".mian.order.OrderInfoActivity" />
+        <activity android:name=".mian.wishList.MyWishListActivity"></activity>
     </application>
 
 </manifest>

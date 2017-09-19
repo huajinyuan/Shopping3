@@ -9,11 +9,16 @@
         android:orientation="vertical">
 
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="140dp"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:src="@mipmap/img_top_bg" />-->
+        <cn.zy.base.shopping.widget.bn.CarouselView
+            android:id="@+id/CarouselView"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img_top_bg" />
+            android:visibility="visible" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,13 +27,19 @@
             android:background="@drawable/shape_radius_white"
             android:padding="8dp">
 
-            <lecho.lib.hellocharts.view.LineChartView
+            <!--<lecho.lib.hellocharts.view.LineChartView-->
+                <!--android:id="@+id/chart"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="180dp"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentTop="true" />-->
+
+            <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
+                />
         </RelativeLayout>
 
 

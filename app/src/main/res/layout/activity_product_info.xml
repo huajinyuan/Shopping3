@@ -20,12 +20,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_300">
+                android:layout_height="@dimen/dp_300"
+                android:visibility="visible">
 
-                <ImageView
+                <cn.zy.base.shopping.widget.bn.CarouselView
+                    android:id="@+id/CarouselView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/icon_pic" />
+                    android:layout_height="@dimen/dp_300"
+                    android:visibility="visible" />
 
             </RelativeLayout>
 
@@ -60,11 +62,12 @@
                 </LinearLayout>
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/edt_title"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_30"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_3"
                     android:background="@drawable/shape_radius_white"
+                    android:minHeight="@dimen/dp_30"
                     android:paddingLeft="@dimen/dp_8"
                     android:text="High Top canvas shoes"
                     android:textSize="@dimen/sp_14" />
@@ -101,6 +104,7 @@
                 </LinearLayout>
 
                 <EditText
+                    android:id="@+id/edt_price"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_30"
                     android:layout_marginTop="@dimen/dp_3"
@@ -132,14 +136,22 @@
 
                 </LinearLayout>
 
-                <EditText
+                <!--<EditText-->
+                <!--android:id="@+id/edt_category"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dp_30"-->
+                <!--android:layout_marginTop="@dimen/dp_3"-->
+                <!--android:background="@drawable/shape_radius_white"-->
+                <!--android:paddingLeft="@dimen/dp_8"-->
+                <!--android:text="PageBack"-->
+                <!--android:textSize="@dimen/sp_14" />-->
+                <Spinner
+                    android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_30"
-                    android:layout_marginTop="@dimen/dp_3"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/shape_radius_white"
-                    android:paddingLeft="@dimen/dp_8"
-                    android:text="PageBack"
-                    android:textSize="@dimen/sp_14" />
+                    android:entries="@array/Order_type"
+                    android:minHeight="@dimen/dp_35" />
             </LinearLayout>
 
             <LinearLayout
@@ -172,47 +184,43 @@
 
                 </LinearLayout>
 
-                <EditText
+                <WebView
+                    android:id="@+id/web_content"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_3"
-                    android:background="@drawable/shape_radius_white"
-                    android:lines="5"
-                    android:minHeight="@dimen/dp_30"
-                    android:padding="@dimen/dp_8"
-                    android:text="fnasdkflandfjkasdlkfjasdkfasdmadsfdsfanklajskdfamdsfnasdkflandfjkasdlkfjasdkfasdmadsfdsfanklajskdfamdsfnasdkflandfjkasdlkfjasdkfasdmadsfdsfanklajskdfamdsadsfdsfanklajskdfamdsadsfdsfanklajskdfamds,fnasdkflandfjkasdlkfjasdkfasdmadsfdsfanklajskdfamds,fnasdkflandfjkasdlkfjasdkfasdmadsfdsfanklajskdfamds,fnasdkflandfjkasdlkfjasdkfasdm,fnasdkflandfjkasdlkfjasdkfasdm,f"
-                    android:textSize="@dimen/sp_14" />
+                    android:layout_height="200dp"
+                    tools:ignore="WebViewLayout" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp_40"
                 android:layout_marginTop="@dimen/dp_8"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dp_20"
-                android:paddingRight="@dimen/dp_20">
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_action_delete"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_radius_white"
+                    android:background="@color/color_black_0D"
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_8"
                     android:paddingTop="@dimen/dp_8"
-                    android:text="DELETE" />
+                    android:text="DELETE"
+                    android:textColor="@color/textcolor_selector_1" />
 
                 <TextView
+                    android:id="@+id/tv_action_save"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_radius_white"
+                    android:background="@color/color_white"
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_8"
                     android:paddingTop="@dimen/dp_8"
-                    android:text="SAVE" />
+                    android:text="SAVE"
+                    android:textColor="@color/textcolor_selector"
+                    android:textSize="@dimen/sp_12" />
 
 
             </LinearLayout>

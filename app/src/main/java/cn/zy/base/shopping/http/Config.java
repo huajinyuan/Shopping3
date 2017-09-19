@@ -15,17 +15,29 @@ public interface Config {
      */
     String POST_LOGIN = BASE + "/api/mobile/oauth/token";
     /**
+     * 个人信息
+     */
+    String POST_USERINFO = BASE + "/api/mobile/user/profile";
+    /**
      * 注册接口
      */
-    String POST_REG = BASE + "/api/mobile/oauth/token";
+    String POST_REG = BASE + "/api/mobile/user";
     /**
      * Dashboard
      */
     String DASHBOARD = BASE + "/api/mobile/user/dashboard";
     /**
+     * 轮播图
+     */
+    String SLIDERS = BASE + "/api/mobile/sliders";
+    /**
      * 商品列表
      */
     String PRODUCTS = BASE + "/api/mobile/user/products/";
+    /**
+     * 商品action
+     */
+    String DELETE_PRODUCT = BASE + "/api/mobile/user/products/{product_id}";
     /**
      * 商品分类
      */
@@ -33,7 +45,7 @@ public interface Config {
     /**
      * GET 获取详情  PUT 更新商品  DELETE 删除商品
      */
-    String PRODUCTS_UPDATE = BASE + "/api/mobile/user/products/{{product_id}}";
+    String PRODUCTS_UPDATE = BASE + "/api/mobile/user/products/{product_id}";
     /**
      * Orders
      */
@@ -43,9 +55,29 @@ public interface Config {
      */
     String ORDER_GROUPS_BYID = BASE + "/api/mobile/user/order_groups/{order_id}";
     /**
-     *  DELETE 删除某个订单列表下的某个订单
-     *  GET 显示某个订单列表下的某个订单
+     * DELETE 删除某个订单列表下的某个订单
+     * GET 显示某个订单列表下的某个订单
      */
     String ORDER_GROUPS_INFO = BASE + "/api/mobile/user/order_groups/{order_id}/order/{id}";
+    /**
+     * GET publish designs
+     */
+    String PUBLISH_DESIGNS = BASE + "/api/mobile/user/public_designs";
+    /**
+     * get_mywishlists
+     */
+    String GET_MYWISHLISTS = BASE + "/api/mobile/user/wishlists";
+    /**
+     * publish_designs_add2wishlists
+     */
+    String PUBLISH_DESIGNS_ADD2WISHLISTS = BASE + "/api/mobile/user/wishlists/";
+    /**
+     * publish_designs_add2products
+     */
+    String PUBLISH_DESIGNS_ADD2PRODUCTS = BASE + "/api/mobile/user/public_designs/products";
+    /**
+     * delete_mywishlists
+     */
+    String DELETE_MYWISHLISTS = BASE + "/api/mobile/user/wishlists/{id}";
 
 }
