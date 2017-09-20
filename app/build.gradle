@@ -45,7 +45,7 @@ dependencies {
 //    }
     compile('com.paypal.sdk:paypal-android-sdk:2.15.3')
     compile 'com.google.android.gms:play-services-wallet:8.4.0'
-
+    compile 'co.lujun:androidtagview:1.1.4'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

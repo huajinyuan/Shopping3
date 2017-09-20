@@ -37,6 +37,7 @@ import cn.zy.base.shopping.mian.product.m.ProductTypeList;
 import cn.zy.base.shopping.utils.AppUtils;
 import cn.zy.base.shopping.utils.ToastUtil;
 import cn.zy.base.shopping.widget.bn.CarouselView;
+import co.lujun.androidtagview.TagContainerLayout;
 import okhttp3.Response;
 import rx.Subscriber;
 
@@ -58,6 +59,8 @@ public class ProductInfoActivity extends AppCompatActivity {
     CarouselView mCarouselView;
     @BindView(R.id.spinner)
     public Spinner mSpinner;
+//    @BindView(R.id.tag_container)
+//    TagContainerLayout mTag;
     ProductInfo info;
     Context mContext;
     private cn.zy.base.shopping.adapter.SpinnerAdapter SpinnerAdapter;
@@ -260,9 +263,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     ProductInfo info = Parsing.getInstance().ResponseToObject(response, ProductInfo.class).getData();
                     setWebDescription(info.getContent());
-//                    ToastUtil.showToast("Succesefull", mContext);
-//                    finish();
-//                    webContent.
+
 
                 } else {
                     ToastUtil.showToast("Fail", mContext);
@@ -271,6 +272,7 @@ public class ProductInfoActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
     public void setWebDescription(String html) {

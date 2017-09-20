@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +41,7 @@ import cn.zy.base.shopping.mian.product.m.ProductTypeList;
 import cn.zy.base.shopping.utils.AppUtils;
 import cn.zy.base.shopping.utils.ToastUtil;
 import cn.zy.base.shopping.widget.bn.CarouselView;
+import co.lujun.androidtagview.TagContainerLayout;
 import okhttp3.Response;
 import rx.Subscriber;
 
@@ -57,7 +59,8 @@ public class DesignInfoActivity extends AppCompatActivity {
     CarouselView mCarouselView;
     private PublishDesignInfo info;
     Context mContext;
-
+    @BindView(R.id.tag_container)
+    TagContainerLayout mTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +96,9 @@ public class DesignInfoActivity extends AppCompatActivity {
                     return info.getImages().size();
                 }
             });
-            getProduct(info.getId());
+
+            setTag(info.getTags());
+//            getProduct(info.getId());
         }
     }
 
@@ -200,41 +205,42 @@ public class DesignInfoActivity extends AppCompatActivity {
 //        });
 //    }
 
-    public void getProduct(String productId) {
-        String url = UriTemplate.fromTemplate(Config.DELETE_PRODUCT)
-                .set("product_id", productId)
-                .expand();
-
-        HttpParams params = HttpMethods.getInstance().getHttpParams();
-
-        GetRequest request = OkGo.get(url).params(params);
-        HttpMethods.getInstance().doGet(request, true).subscribe(new Subscriber<Response>() {
-            @Override
-            public void onCompleted() {
-//                getProductData();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                ToastUtil.showToast("请求失败，请检查网络", mContext);
-            }
-
-            @Override
-            public void onNext(Response response) {
-                if (response.code() == 200) {
-                    ProductInfo info = Parsing.getInstance().ResponseToObject(response, ProductInfo.class).getData();
-                    setWebDescription(info.getContent());
-//                    ToastUtil.showToast("Succesefull", mContext);
-//                    finish();
-//                    webContent.
-
-                } else {
-                    ToastUtil.showToast("Fail", mContext);
-
-                }
-            }
-        });
-    }
+//    public void getProduct(String productId) {
+//        String url = UriTemplate.fromTemplate(Config.DELETE_PRODUCT)
+//                .set("product_id", productId)
+//                .expand();
+//
+//        HttpParams params = HttpMethods.getInstance().getHttpParams();
+//
+//        GetRequest request = OkGo.get(url).params(params);
+//        HttpMethods.getInstance().doGet(request, true).subscribe(new Subscriber<Response>() {
+//            @Override
+//            public void onCompleted() {
+////                getProductData();
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                ToastUtil.showToast("请求失败，请检查网络", mContext);
+//            }
+//
+//            @Override
+//            public void onNext(Response response) {
+//                if (response.code() == 200) {
+//                    ProductInfo info = Parsing.getInstance().ResponseToObject(response, ProductInfo.class).getData();
+//                    setWebDescription(info.getContent());
+////                    ToastUtil.showToast("Succesefull", mContext);
+////                    finish();
+////                    webContent.
+//
+//
+//                } else {
+//                    ToastUtil.showToast("Fail", mContext);
+//
+//                }
+//            }
+//        });
+//    }
 
 
     public void setWebDescription(String html) {
@@ -244,5 +250,9 @@ public class DesignInfoActivity extends AppCompatActivity {
         webContent.loadData(html, mimeType, encoding);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+    }
+
+    public void setTag(ArrayList<String> tags) {
+        mTag.setTags(tags);
     }
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/color_bg"
     android:orientation="vertical">
 
@@ -145,6 +146,31 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tag:" />
+
+                    <co.lujun.androidtagview.TagContainerLayout
+                        android:id="@+id/tag_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:padding="10dp"
+                        app:container_enable_drag="false"
+                        app:horizontal_interval="10dp"
+                        app:tag_clickable="true"
+                        app:tag_theme="pure_teal"
+                        app:vertical_interval="10dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp_3"
                     android:layout_marginTop="@dimen/dp_3"
                     android:gravity="center_vertical"
@@ -210,17 +236,17 @@
                 </LinearLayout>
 
                 <!--<EditText-->
-                    <!--android:id="@+id/edt_Description"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="@dimen/dp_3"-->
-                    <!--android:background="@drawable/shape_radius_white"-->
-                    <!--android:lines="5"-->
-                    <!--android:minHeight="@dimen/dp_30"-->
-                    <!--android:paddingLeft="@dimen/dp_8"-->
-                    <!--android:paddingRight="@dimen/dp_8"-->
-                    <!--android:text=""-->
-                    <!--android:textSize="@dimen/sp_14" />-->
+                <!--android:id="@+id/edt_Description"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/dp_3"-->
+                <!--android:background="@drawable/shape_radius_white"-->
+                <!--android:lines="5"-->
+                <!--android:minHeight="@dimen/dp_30"-->
+                <!--android:paddingLeft="@dimen/dp_8"-->
+                <!--android:paddingRight="@dimen/dp_8"-->
+                <!--android:text=""-->
+                <!--android:textSize="@dimen/sp_14" />-->
 
                 <WebView
                     android:id="@+id/web_content"
