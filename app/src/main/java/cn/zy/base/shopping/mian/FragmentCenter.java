@@ -34,6 +34,8 @@ import cn.zy.base.shopping.mian.center.MyPaymentActivity;
 import cn.zy.base.shopping.mian.center.m.UserInfo;
 import cn.zy.base.shopping.mian.design.PublicDesignsActivity;
 import cn.zy.base.shopping.mian.design.m.Dashboard;
+import cn.zy.base.shopping.mian.order.MyOrderActivity;
+import cn.zy.base.shopping.mian.order.PendingOrderActivity;
 import cn.zy.base.shopping.mian.product.ProductsActivity;
 import cn.zy.base.shopping.mian.wishList.MyWishListActivity;
 import cn.zy.base.shopping.utils.PixelUtil;
@@ -85,13 +87,13 @@ public class FragmentCenter extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         mContext = getActivity();
         mTvTitle.setText("My Account");
-        imgBack.setImageResource(R.mipmap.set_icon);
+        imgBack.setVisibility(View.INVISIBLE);
         imgRight.setImageResource(R.mipmap.editinfo_icon);
-        imgRight.setVisibility(View.VISIBLE);
+        imgRight.setVisibility(View.GONE);
         getUserInfo();
     }
 
-    @OnClick({R.id.img_topbar_right, R.id.lin_product, R.id.lin_order, R.id.lin_wish_list, R.id.lin_mypayment})
+    @OnClick({R.id.img_topbar_right, R.id.lin_balance, R.id.lin_product, R.id.lin_order, R.id.lin_wish_list, R.id.lin_mypayment})
     public void Onclick(View v) {
         Intent intent;
         switch (v.getId()) {
@@ -102,16 +104,22 @@ public class FragmentCenter extends BaseFragment {
                 }
                 getActivity().startActivity(intent);
                 break;
+            case R.id.lin_balance:
+                intent = new Intent(getActivity(), MyPaymentActivity.class);
+                getActivity().startActivity(intent);
+                break;
             case R.id.lin_product:
                 intent = new Intent(getActivity(), ProductsActivity.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.lin_mypayment:
-                intent = new Intent(getActivity(), MyPaymentActivity.class);
+                intent = new Intent(getActivity(), PendingOrderActivity.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.lin_order:
-                ((MainActivity) getActivity()).setTabSelection(1);
+                intent = new Intent(getActivity(), MyOrderActivity.class);
+                getActivity().startActivity(intent);
+//                ((MainActivity) getActivity()).setTabSelection(1);
                 break;
             case R.id.lin_wish_list:
                 intent = new Intent(getActivity(), MyWishListActivity.class);
@@ -136,17 +144,19 @@ public class FragmentCenter extends BaseFragment {
             public void onCompleted() {
 
             }
+
             @Override
             public void onError(Throwable e) {
                 ToastUtil.showToast("请求失败，请检查网络", mContext);
             }
+
             @Override
             public void onNext(Response response) {
                 if (response.code() == 200) {
                     info = Parsing.getInstance().ResponseToObject(response, UserInfo.class).getData();
                     tvName.setText(info.getName());
                     tvEmail.setText(info.getEmail());
-                    tvBalance.setText("$"+info.getBalance());
+                    tvBalance.setText("$" + info.getBalance());
 
                     Glide.with(mContext).load(info.getAvatar()).asBitmap().error(R.mipmap.photos_icon).centerCrop().into(new BitmapImageViewTarget(imgAvatar) {
                         @Override

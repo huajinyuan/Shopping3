@@ -62,7 +62,7 @@
 
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/edt_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,29 +90,55 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price"
+                        android:text="Product Attributes"
                         android:textColor="@color/colorTextGrey"
                         android:textSize="@dimen/sp_14" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_3"
-                        android:text="*Suggested Price:$10.98"
-                        android:textColor="@color/colorAppRed"
-                        android:textSize="@dimen/sp_14" />
 
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/edt_price"
+                <!--<EditText-->
+                <!--android:id="@+id/edt_price"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dp_30"-->
+                <!--android:layout_marginTop="@dimen/dp_3"-->
+                <!--android:background="@drawable/shape_radius_white"-->
+                <!--android:paddingLeft="@dimen/dp_8"-->
+                <!--android:text="$9.98"-->
+                <!--android:textSize="@dimen/sp_14" />-->
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_30"
-                    android:layout_marginTop="@dimen/dp_3"
-                    android:background="@drawable/shape_radius_white"
-                    android:paddingLeft="@dimen/dp_8"
-                    android:text="$9.98"
-                    android:textSize="@dimen/sp_14" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rec_attributes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_30"
+                        android:layout_marginRight="@dimen/dp_30"
+                        android:paddingBottom="@dimen/dp_3"
+                        android:paddingTop="@dimen/dp_3"
+                        android:textColor="@color/color_white"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_radius_black"
+                        android:text="EDIT" />
+
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -156,7 +182,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,7 +215,7 @@
                 <WebView
                     android:id="@+id/web_content"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     tools:ignore="WebViewLayout" />
             </LinearLayout>
 

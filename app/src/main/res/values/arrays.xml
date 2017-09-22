@@ -2,9 +2,10 @@
 <resources>
     <string-array name="Order_type">
         <item>All Statuses</item>
-        <item>Running Shoes </item>
-        <item>High Top Canvas Shoes</item>
-        <item>Pillow Cover</item>
+        <item>Pending</item>
+        <item>Processing</item>
+        <item>Manufacturing</item>
+        <item>Shipped</item>
     </string-array>
 
     <string-array name="country_key">

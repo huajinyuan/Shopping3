@@ -7,5 +7,9 @@ import cn.zy.base.shopping.mian.order.m.OrderInfo;
  */
 
 public interface IOrderitemBack {
-    public void back(OrderInfo o);
+    void back(OrderInfo o);
+
+    void CheckDelivery(int postion, int isCheck);
+
+
 }

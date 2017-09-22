@@ -32,11 +32,13 @@ import cn.zy.base.shopping.R;
 import cn.zy.base.shopping.http.Config;
 import cn.zy.base.shopping.http.HttpMethods;
 import cn.zy.base.shopping.http.Parsing;
+import cn.zy.base.shopping.mian.center.MyPaymentActivity;
 import cn.zy.base.shopping.mian.design.PublicDesignsActivity;
 import cn.zy.base.shopping.mian.design.m.ChatInfo;
 import cn.zy.base.shopping.mian.design.m.Dashboard;
 import cn.zy.base.shopping.mian.m.SliderDatas;
 import cn.zy.base.shopping.mian.m.Slidersinfo;
+import cn.zy.base.shopping.mian.order.PendingOrderActivity;
 import cn.zy.base.shopping.mian.product.ProductsActivity;
 import cn.zy.base.shopping.utils.DayAxisValueFormatter;
 import cn.zy.base.shopping.utils.ToastUtil;
@@ -185,12 +187,20 @@ public class FragmentDashboard extends BaseFragment {
     }
 
 
-    @OnClick({R.id.lin_product, R.id.lin_design})
+    @OnClick({R.id.lin_balance, R.id.lin_product, R.id.lin_pending_payment, R.id.lin_design})
     public void OnClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.lin_balance:
+                intent = new Intent(getActivity(), MyPaymentActivity.class);
+                getActivity().startActivity(intent);
+                break;
             case R.id.lin_product:
                 intent = new Intent(getActivity(), ProductsActivity.class);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.lin_pending_payment:
+                intent = new Intent(getActivity(), PendingOrderActivity.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.lin_design:

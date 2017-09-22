@@ -31,7 +31,13 @@
         <activity android:name=".mian.login.RegisterActivity" />
         <activity android:name=".mian.login.RegisterNextActivity" />
         <activity android:name=".mian.order.OrderInfoActivity" />
-        <activity android:name=".mian.wishList.MyWishListActivity"></activity>
+        <activity android:name=".mian.wishList.MyWishListActivity" />
+        <activity android:name=".mian.order.PendingOrderActivity" />
+        <activity
+            android:name=".mian.order.LogisticsActivity"
+            android:label="@string/title_activity_logistics"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".mian.order.MyOrderActivity"></activity>
     </application>
 
 </manifest>

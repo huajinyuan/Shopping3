@@ -72,7 +72,12 @@ public class ProductsActivity extends AppCompatActivity implements IItemClickBac
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                getDataFromType(mCateData.get(i).getId());
+                if (i == 0) {
+                    getProductData();
+                } else {
+
+                    getDataFromType(mCateData.get(i).getId());
+                }
             }
 
             @Override
@@ -207,8 +212,11 @@ public class ProductsActivity extends AppCompatActivity implements IItemClickBac
                     if (null != datas && !datas.isEmpty()) {
                         mCateData.clear();
                         mCateData.addAll(datas);
+                        Category category = new Category();
+                        category.setId("All Types");
+                        category.setName("All Types");
+                        mCateData.add(0, category);
                         SpinnerAdapter.notifyDataSetChanged();
-                        getDataFromType(datas.get(0).getId());
                     }
 
 //                    setData(datas);

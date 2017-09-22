@@ -29,6 +29,7 @@ import cn.zy.base.shopping.http.Parsing;
 import cn.zy.base.shopping.mian.order.m.OrderInfo;
 import cn.zy.base.shopping.mian.order.m.OrderInfoList;
 import cn.zy.base.shopping.mian.order.m.OrderList;
+import cn.zy.base.shopping.utils.AppUtils;
 import cn.zy.base.shopping.utils.PixelUtil;
 import cn.zy.base.shopping.utils.ToastUtil;
 import cn.zy.base.shopping.widget.DividerGridItemDecoration;
@@ -52,6 +53,7 @@ public class OrderInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_info);
+        AppUtils.MIUISetStatusBarLightMode(getWindow(), true);
         unbinder = ButterKnife.bind(this);
         mContext = this;
         info = (OrderInfo) getIntent().getSerializableExtra("OrderInfo");
@@ -68,7 +70,7 @@ public class OrderInfoActivity extends AppCompatActivity {
         if (null == adapter) {
             manager = new LinearLayoutManager(this);
             mRec.addItemDecoration(new DividerGridItemDecoration(this));
-            adapter = new OrderInfoListAdapter(this, mData);
+            adapter = new OrderInfoListAdapter(this, mData, info);
             mRec.setAdapter(adapter);
             mRec.setLayoutManager(manager);
             int spac = PixelUtil.dp2px(this, 8);

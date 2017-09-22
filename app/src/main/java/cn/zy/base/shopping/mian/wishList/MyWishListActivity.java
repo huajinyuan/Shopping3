@@ -29,6 +29,7 @@ import cn.zy.base.shopping.http.HttpMethods;
 import cn.zy.base.shopping.http.Parsing;
 import cn.zy.base.shopping.mian.design.m.PublishDesign;
 import cn.zy.base.shopping.mian.design.m.PublishDesignInfo;
+import cn.zy.base.shopping.mian.wishList.m.WishCount;
 import cn.zy.base.shopping.mian.wishList.m.WishInfo;
 import cn.zy.base.shopping.mian.wishList.m.WishList;
 import cn.zy.base.shopping.utils.AppUtils;
@@ -194,4 +195,5 @@ public class MyWishListActivity extends AppCompatActivity implements IItemclickB
         });
 
     }
+
 }

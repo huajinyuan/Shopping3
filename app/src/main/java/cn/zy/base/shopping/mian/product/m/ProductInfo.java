@@ -1,5 +1,7 @@
 package cn.zy.base.shopping.mian.product.m;
 
+import com.alibaba.fastjson.JSONObject;
+
 import org.json.JSONArray;
 
 import java.io.Serializable;
@@ -15,7 +17,7 @@ public class ProductInfo implements Serializable {
     private Category category;
     private String price_range;
     private String content;
-    private JSONArray prices;
+    private JSONObject prices;
     private ArrayList<ProductAttributes> attributes;
     private ArrayList<String> images;
 
@@ -67,11 +69,11 @@ public class ProductInfo implements Serializable {
         this.content = content;
     }
 
-    public JSONArray getPrices() {
+    public JSONObject getPrices() {
         return prices;
     }
 
-    public void setPrices(JSONArray prices) {
+    public void setPrices(JSONObject prices) {
         this.prices = prices;
     }
 

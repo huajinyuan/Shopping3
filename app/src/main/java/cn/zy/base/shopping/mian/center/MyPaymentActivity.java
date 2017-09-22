@@ -3,7 +3,10 @@ package cn.zy.base.shopping.mian.center;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.gt.okgo.OkGo;
+import com.gt.okgo.model.HttpParams;
+import com.gt.okgo.request.GetRequest;
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
@@ -36,12 +44,19 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.zy.base.shopping.R;
+import cn.zy.base.shopping.http.Config;
+import cn.zy.base.shopping.http.HttpMethods;
+import cn.zy.base.shopping.http.Parsing;
+import cn.zy.base.shopping.mian.center.m.UserInfo;
 import cn.zy.base.shopping.utils.AppUtils;
 import cn.zy.base.shopping.utils.F;
+import cn.zy.base.shopping.utils.ToastUtil;
+import okhttp3.Response;
+import rx.Subscriber;
 
 public class MyPaymentActivity extends AppCompatActivity {
-        private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_PRODUCTION;
-//    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_PRODUCTION;
+    //    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
     // note that these credentials will differ between live & sandbox environments.
     private static final String CONFIG_CLIENT_ID = "ARVTaQmpoAqdRRN5ebIRd3gibn8PSzJ_b_nCa-bS70UcoMs7net0zgZw7Nu3obiHd6Ti_vOHBnWAOBL8";
 //    private static final String CONFIG_CLIENT_ID = "AaSpAze-THIgHDLiTGksTVsvN5UehcYTS1kv1jObLlnipI6KUmgCliUZMPBaTcyAZhj9Bityu818eaGB";
@@ -52,16 +67,16 @@ public class MyPaymentActivity extends AppCompatActivity {
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(CONFIG_ENVIRONMENT)
             .clientId(CONFIG_CLIENT_ID)
-            // The following are only used in PayPalFuturePaymentActivity.
             .merchantName("Example Merchant")
-//            .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
-//            .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
             .merchantPrivacyPolicyUri(Uri.parse("https://www.forudropshipping.com/terms"))
             .merchantUserAgreementUri(Uri.parse("https://www.forudropshipping.com/terms"));
     private Unbinder unbinder;
     @BindView(R.id.tv_topbar_title)
     TextView mTvTitle;
+    @BindView(R.id.tv_balance)
+    TextView tv_balance;
     Context mContext;
+    public UserInfo info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +87,7 @@ public class MyPaymentActivity extends AppCompatActivity {
         AppUtils.MIUISetStatusBarLightMode(getWindow(), true);
         mTvTitle.setText("My Payment");
         initData(mContext);
+        getUserInfo();
     }
 
 
@@ -338,4 +354,32 @@ public class MyPaymentActivity extends AppCompatActivity {
         displayResultText("Client Metadata Id received from SDK");
     }
 
+
+    public void getUserInfo() {
+        HttpParams params = HttpMethods.getInstance().getHttpParams();
+        GetRequest request = OkGo.get(Config.POST_USERINFO).params(params);
+        HttpMethods.getInstance().doGet(request, true).subscribe(new Subscriber<Response>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtil.showToast("请求失败，请检查网络", mContext);
+            }
+
+            @Override
+            public void onNext(Response response) {
+                if (response.code() == 200) {
+                    info = Parsing.getInstance().ResponseToObject(response, UserInfo.class).getData();
+                    tv_balance.setText("$" + info.getBalance());
+
+                } else {
+                    ToastUtil.showToast("Fail", mContext);
+
+                }
+            }
+        });
+    }
 }

@@ -22,12 +22,11 @@ import cn.zy.base.shopping.mian.order.m.OrderInfo;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AnchorHotViewHolder> {
     private Context mContext;
     private ArrayList<OrderInfo> mData;
-    private IOrderitemBack mBack;
+//    private IOrderitemBack mBack;
 
-    public OrderAdapter(Context mContext, ArrayList<OrderInfo> mData, IOrderitemBack back) {
+    public OrderAdapter(Context mContext, ArrayList<OrderInfo> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        this.mBack = back;
     }
 
     @Override
@@ -45,22 +44,23 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AnchorHotVie
         holder.tv_platform.setText(info.getPlatform());
         holder.tv_quantity.setText(info.getQuantity());
         holder.tv_subtotal.setText(info.getSubtotal());
-        holder.tv_action_view.setOnClickListener(new View.OnClickListener() {
+        holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, OrderInfoActivity.class);
                 intent.putExtra("OrderInfo", mData.get(position));
                 mContext.startActivity(intent);
+
             }
         });
-        holder.tv_action_pay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (null != mBack) {
-                    mBack.back(mData.get(position));
-                }
-            }
-        });
+//        holder.tv_action_pay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (null != mBack) {
+//                    mBack.back(mData.get(position));
+//                }
+//            }
+//        });
 
     }
 
@@ -82,8 +82,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AnchorHotVie
         TextView tv_platform;
         TextView tv_quantity;
         TextView tv_subtotal;
-        TextView tv_action_view;
-        TextView tv_action_pay;
+//        TextView tv_action_view;
+//        TextView tv_action_pay;
 
         public AnchorHotViewHolder(View itemView) {
             super(itemView);
@@ -93,8 +93,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.AnchorHotVie
             this.tv_platform = (TextView) itemView.findViewById(R.id.tv_platform);
             this.tv_quantity = (TextView) itemView.findViewById(R.id.tv_quantity);
             this.tv_subtotal = (TextView) itemView.findViewById(R.id.tv_subtotal);
-            this.tv_action_view = (TextView) itemView.findViewById(R.id.tv_action_view);
-            this.tv_action_pay = (TextView) itemView.findViewById(R.id.tv_action_pay);
+//            this.tv_action_view = (TextView) itemView.findViewById(R.id.tv_action_view);
+//            this.tv_action_pay = (TextView) itemView.findViewById(R.id.tv_action_pay);
         }
     }
 }

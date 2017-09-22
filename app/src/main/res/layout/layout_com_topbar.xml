@@ -4,9 +4,9 @@
     android:id="@+id/rel_shoppingcar_top"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipToPadding="true"
+    android:background="#FFFFFF"
     android:clipChildren="true"
-    android:background="#FFFFFF">
+    android:clipToPadding="true">
 
     <ImageView
         android:id="@+id/img_topbar_back"
@@ -23,6 +23,16 @@
         android:layout_centerVertical="true"
         android:textSize="@dimen/sp_18" />
 
+    <ImageView
+        android:id="@+id/img_topbar_right"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:srcCompat="@mipmap/search_icon" />
+
     <TextView
         android:id="@+id/tv_topbar_right"
         android:layout_width="wrap_content"
@@ -34,13 +44,38 @@
         android:padding="10dp"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/img_topbar_right"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+    <LinearLayout
+        android:id="@+id/lin_topbar_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:padding="10dp"
-        android:visibility="gone"
-        app:srcCompat="@mipmap/search_icon" />
+        android:layout_marginRight="@dimen/dp_8"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_8"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_topbar_right_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            app:srcCompat="@mipmap/wishlist_icon" />
+
+        <TextView
+            android:id="@+id/tv_topbar_right_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="0"
+            android:textSize="@dimen/sp_12"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
 </RelativeLayout>

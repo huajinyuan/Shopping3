@@ -3,6 +3,8 @@ package cn.zy.base.shopping.mian.product;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.damnhandy.uri.template.UriTemplate;
@@ -27,17 +30,24 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.zy.base.shopping.R;
+import cn.zy.base.shopping.adapter.ProductsAdapter;
+import cn.zy.base.shopping.adapter.ProductsAttrAdapter;
 import cn.zy.base.shopping.adapter.SpinnerAdapter;
 import cn.zy.base.shopping.http.Config;
 import cn.zy.base.shopping.http.HttpMethods;
 import cn.zy.base.shopping.http.Parsing;
 import cn.zy.base.shopping.mian.product.m.Category;
+import cn.zy.base.shopping.mian.product.m.ProductAttribute;
+import cn.zy.base.shopping.mian.product.m.ProductAttributes;
 import cn.zy.base.shopping.mian.product.m.ProductInfo;
 import cn.zy.base.shopping.mian.product.m.ProductTypeList;
 import cn.zy.base.shopping.utils.AppUtils;
+import cn.zy.base.shopping.utils.PixelUtil;
+import cn.zy.base.shopping.utils.StringUtils;
 import cn.zy.base.shopping.utils.ToastUtil;
+import cn.zy.base.shopping.widget.DividerGridItemDecoration;
+import cn.zy.base.shopping.widget.SpaceItemDecoration;
 import cn.zy.base.shopping.widget.bn.CarouselView;
-import co.lujun.androidtagview.TagContainerLayout;
 import okhttp3.Response;
 import rx.Subscriber;
 
@@ -45,26 +55,27 @@ public class ProductInfoActivity extends AppCompatActivity {
     private Unbinder unbinder;
     @BindView(R.id.tv_topbar_title)
     TextView mTvTitle;
-    //    @BindView(R.id.edt_description)
-//    EditText edtDescription;
     @BindView(R.id.edt_title)
-    EditText edtProjectTitle;
-    @BindView(R.id.edt_price)
-    EditText edtPrice;
+    TextView edtProjectTitle;
+    @BindView(R.id.rec_attributes)
+    RecyclerView mRec;
     @BindView(R.id.web_content)
     WebView webContent;
-    //    @BindView(R.id.edt_category)
-//    EditText edtCategory;
     @BindView(R.id.CarouselView)
     CarouselView mCarouselView;
     @BindView(R.id.spinner)
     public Spinner mSpinner;
-//    @BindView(R.id.tag_container)
+    //    @BindView(R.id.tag_container)
 //    TagContainerLayout mTag;
+    public ProductsAttrAdapter AttrAdapter;
     ProductInfo info;
     Context mContext;
-    private cn.zy.base.shopping.adapter.SpinnerAdapter SpinnerAdapter;
+    private SpinnerAdapter SpinnerAdapter;
     private ArrayList<Category> mCateData = new ArrayList<>();
+    private ArrayList<ProductAttribute> mAtts = new ArrayList<>();
+
+    LinearLayoutManager manager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +91,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         if (null != info) {
             edtProjectTitle.setText(info.getTitle());
 //            edtCategory.setText(info.getCategory()+"");
-            edtPrice.setText(info.getPrice_range());
+//            edtPrice.setText(info.getPrice_range());
             mCarouselView.setAdapter(new CarouselView.Adapter() {
                 @Override
                 public boolean isEmpty() {
@@ -263,7 +274,34 @@ public class ProductInfoActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     ProductInfo info = Parsing.getInstance().ResponseToObject(response, ProductInfo.class).getData();
                     setWebDescription(info.getContent());
+                    String pricekey = "";
+                    ArrayList<ProductAttribute> v = new ArrayList<>();
+                    for (ProductAttributes att : info.getAttributes()) {
+                        ProductAttribute at = new ProductAttribute();
+                        at.setKey(att.getType());
+                        at.setValue(att.getOptions().get(0));
+                        if (StringUtils.isNotEmpty(pricekey)) {
+                            pricekey = pricekey + "-" + att.getType() + "-" + att.getOptions().get(0);
+                        } else {
+                            pricekey = pricekey + att.getType() + "-" + att.getOptions().get(0);
+                        }
+                        v.add(at);
+                    }
+                    ProductAttribute at = new ProductAttribute();
+                    at.setKey("price");
+                    String price = "";
+                    try {
+                        price = info.getPrices().getJSONObject(pricekey).getString("price");
 
+                    } catch (Exception e) {
+
+                    }
+                    if (!price.contains("$")) {
+                        price = "$" + price;
+                    }
+                    at.setValue(price);
+                    v.add(at);
+                    setData(v);
 
                 } else {
                     ToastUtil.showToast("Fail", mContext);
@@ -274,7 +312,6 @@ public class ProductInfoActivity extends AppCompatActivity {
     }
 
 
-
     public void setWebDescription(String html) {
         WebSettings settings = webContent.getSettings();
         String encoding = "UTF-8";
@@ -282,5 +319,22 @@ public class ProductInfoActivity extends AppCompatActivity {
         webContent.loadData(html, mimeType, encoding);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+    }
+
+    public void setData(ArrayList<ProductAttribute> data) {
+        mAtts.clear();
+        mAtts.addAll(data);
+        if (null == AttrAdapter) {
+            manager = new LinearLayoutManager(this);
+//            mRec.addItemDecoration(new DividerGridItemDecoration(this));
+            AttrAdapter = new ProductsAttrAdapter(this, mAtts);
+            mRec.setAdapter(AttrAdapter);
+            mRec.setLayoutManager(manager);
+//            int spac = PixelUtil.dp2px(this, 1);
+//            mRec.addItemDecoration(new SpaceItemDecoration(spac));
+
+        } else {
+            AttrAdapter.notifyDataSetChanged();
+        }
     }
 }

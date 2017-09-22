@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="140dp"
     android:background="#FFF"
     android:orientation="horizontal">
 
@@ -108,7 +108,41 @@
                 android:textSize="@dimen/sp_12" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_3"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Delivery:"
+                android:textColor="@color/color_black_0D"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_DHL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_3"
+                android:background="@drawable/shape_radius_edt_bg"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_8"
+                android:text="DHL"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/tv_EMS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:background="@drawable/shape_radius_edt_bg"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_8"
+                android:text="EMS"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -137,10 +171,10 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="@color/color_bg" />
+    <!--<View-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/color_bg" />-->
 
     <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->
@@ -159,17 +193,20 @@
     <!--android:paddingTop="@dimen/dp_5"-->
     <!--android:text="View" />-->
 
-    <!--<TextView-->
-    <!--android:id="@+id/tv_action_pay"-->
-    <!--android:layout_width="100dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="@dimen/dp_8"-->
-    <!--android:background="@drawable/shape_radius_edt_bg"-->
-    <!--android:gravity="center"-->
-    <!--android:paddingBottom="@dimen/dp_5"-->
-    <!--android:paddingTop="@dimen/dp_5"-->
-    <!--android:text="Pay" />-->
+    <TextView
+        android:id="@+id/tv_action_pay"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/shape_radius_edt_bg"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_5"
+        android:text="Pay" />
     <!--</LinearLayout>-->
 
 
-</LinearLayout>
+</RelativeLayout>

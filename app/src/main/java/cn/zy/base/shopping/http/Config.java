@@ -51,9 +51,25 @@ public interface Config {
      */
     String ORDER_GROUPS = BASE + "/api/mobile/user/order_groups";
     /**
+     * Orders
+     */
+    String ORDER_GROUPS_PENDING = BASE + "/api/mobile/user/order_groups/pending";
+    /**
+     * Orders
+     */
+    String ORDER_BY_ID = BASE + "/api/mobile/user/order_groups/{group_id}/orders/{order_id}";
+    /**
      * GET 某个订单列表
      */
     String ORDER_GROUPS_BYID = BASE + "/api/mobile/user/order_groups/{order_id}";
+    /**
+     * GET 运费计算
+     */
+    String ORDER_GROUPS_CALCULATE = BASE + "/api/mobile/user/order_groups/shipping_calculate";
+    /**
+     * GET 支付订单
+     */
+    String ORDER_GROUPS_PAY = BASE + "/api/mobile/user/payments/order_groups";
     /**
      * DELETE 删除某个订单列表下的某个订单
      * GET 显示某个订单列表下的某个订单
@@ -63,6 +79,14 @@ public interface Config {
      * GET publish designs
      */
     String PUBLISH_DESIGNS = BASE + "/api/mobile/user/public_designs";
+    /**
+     * GET wishlist_count
+     */
+    String WISHLIST_COUNT = BASE + "/api/mobile/user/wishlists/count";
+    /**
+     * GET publish designs
+     */
+    String PUBLISH_DESIGNS_BYID = BASE + "/api/mobile/user/public_designs/{designs_id}";
     /**
      * get_mywishlists
      */

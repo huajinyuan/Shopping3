@@ -6,13 +6,22 @@ import java.io.Serializable;
  * Created by 51090 on 2017/8/31.
  */
 
-public class OrderInfo implements Serializable{
+public class OrderInfo implements Serializable {
     private String id;
     private String name;
     private String status;
     private String platform;
     private String quantity;
     private String subtotal;
+    /**
+     * normal 0
+     * DHL 1
+     * EMS 2
+     */
+    private int Delivery = 0;
+    private String total;
+    private String cost;
+    private String shipping;
 
     public String getId() {
         return id;
@@ -62,6 +71,38 @@ public class OrderInfo implements Serializable{
         this.subtotal = subtotal;
     }
 
+    public int getDelivery() {
+        return Delivery;
+    }
+
+    public void setDelivery(int delivery) {
+        Delivery = delivery;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
+    public String getShipping() {
+        return shipping;
+    }
+
+    public void setShipping(String shipping) {
+        this.shipping = shipping;
+    }
+
     @Override
     public String toString() {
         return "OrderInfo{" +
@@ -71,6 +112,10 @@ public class OrderInfo implements Serializable{
                 ", platform='" + platform + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", subtotal='" + subtotal + '\'' +
+                ", Delivery=" + Delivery +
+                ", total='" + total + '\'' +
+                ", cost='" + cost + '\'' +
+                ", shipping='" + shipping + '\'' +
                 '}';
     }
 }

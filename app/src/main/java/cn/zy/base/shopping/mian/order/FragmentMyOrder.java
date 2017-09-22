@@ -1,8 +1,6 @@
-package cn.zy.base.shopping.mian;
+package cn.zy.base.shopping.mian.order;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,50 +8,31 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gt.okgo.OkGo;
 import com.gt.okgo.model.HttpParams;
 import com.gt.okgo.request.GetRequest;
-import com.paypal.android.sdk.payments.PayPalConfiguration;
-import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
-import com.paypal.android.sdk.payments.PayPalItem;
-import com.paypal.android.sdk.payments.PayPalOAuthScopes;
-import com.paypal.android.sdk.payments.PayPalPayment;
-import com.paypal.android.sdk.payments.PayPalPaymentDetails;
-import com.paypal.android.sdk.payments.PayPalProfileSharingActivity;
-import com.paypal.android.sdk.payments.PayPalService;
-import com.paypal.android.sdk.payments.PaymentActivity;
-import com.paypal.android.sdk.payments.ShippingAddress;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.zy.base.shopping.R;
 import cn.zy.base.shopping.adapter.CommonAdapter;
 import cn.zy.base.shopping.adapter.CommonViewHolder;
-import cn.zy.base.shopping.adapter.SpinnerAdapter;
+import cn.zy.base.shopping.adapter.OrderAdapter;
 import cn.zy.base.shopping.base.BaseFragment;
 import cn.zy.base.shopping.http.Config;
 import cn.zy.base.shopping.http.HttpMethods;
 import cn.zy.base.shopping.http.Parsing;
-import cn.zy.base.shopping.mian.order.IOrderitemBack;
 import cn.zy.base.shopping.mian.order.m.OrderInfo;
 import cn.zy.base.shopping.mian.order.m.OrderList;
 import cn.zy.base.shopping.mian.order.m.OrderStatuses;
-import cn.zy.base.shopping.mian.product.m.ProductInfo;
-import cn.zy.base.shopping.mian.product.m.ProductList;
+import cn.zy.base.shopping.utils.PixelUtil;
 import cn.zy.base.shopping.utils.ToastUtil;
 import cn.zy.base.shopping.widget.DividerGridItemDecoration;
-import cn.zy.base.shopping.utils.PixelUtil;
-import cn.zy.base.shopping.R;
 import cn.zy.base.shopping.widget.SpaceItemDecoration;
-import cn.zy.base.shopping.adapter.OrderAdapter;
 import okhttp3.Response;
 import rx.Subscriber;
 
@@ -61,7 +40,7 @@ import rx.Subscriber;
 /**
  * Created by gtgs on 2016/9/2.
  */
-public class FragmentOrder extends BaseFragment {
+public class FragmentMyOrder extends BaseFragment {
 
 
     LinearLayoutManager manager;
@@ -71,12 +50,6 @@ public class FragmentOrder extends BaseFragment {
     public RecyclerView mRec;
     @BindView(R.id.spinner)
     public Spinner mSpinner;
-    @BindView(R.id.img_topbar_back)
-    ImageView imgBack;
-    @BindView(R.id.img_topbar_right)
-    ImageView imgRight;
-    @BindView(R.id.tv_topbar_title)
-    TextView mTvTitle;
     Context mContext;
     private CommonAdapter<OrderStatuses> SpinnerAdapter;
     private ArrayList<OrderStatuses> mStatusData = new ArrayList<>();
@@ -86,7 +59,7 @@ public class FragmentOrder extends BaseFragment {
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_order;
+        return R.layout.fragment_myorder;
     }
 
     @Override
@@ -98,9 +71,6 @@ public class FragmentOrder extends BaseFragment {
     public void initData(View view) {
         unbinder = ButterKnife.bind(this, view);
         mContext = getActivity();
-        imgBack.setVisibility(View.INVISIBLE);
-        imgRight.setVisibility(View.GONE);
-        mTvTitle.setText("Order");
         getOrderData(null);
 
         SpinnerAdapter = new CommonAdapter<OrderStatuses>(getActivity(), mStatusData, R.layout.layout_item_spinner) {
@@ -114,7 +84,6 @@ public class FragmentOrder extends BaseFragment {
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                getDataFromType(mCateData.get(i).getId());
                 if (i == 0) {
 
                     getOrderData(null);

@@ -2,6 +2,7 @@ package cn.zy.base.shopping.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,12 @@ public class PublicDesignAdapter extends RecyclerView.Adapter<PublicDesignAdapte
                 }
             });
         }
+
+        LinearLayoutManager manager = new LinearLayoutManager(mContext);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        holder.rec_tag.setLayoutManager(manager);
+        WishListTagAdapter ad = new WishListTagAdapter(mContext, info.getTags());
+        holder.rec_tag.setAdapter(ad);
     }
 
     @Override
@@ -91,6 +98,8 @@ public class PublicDesignAdapter extends RecyclerView.Adapter<PublicDesignAdapte
         TextView tv_action_add;
         TextView tv_added;
         ImageView img_pic;
+        RecyclerView rec_tag;
+
 
         public AnchorHotViewHolder(View itemView) {
             super(itemView);
@@ -101,6 +110,7 @@ public class PublicDesignAdapter extends RecyclerView.Adapter<PublicDesignAdapte
             this.tv_action_add = (TextView) itemView.findViewById(R.id.tv_action_add);
             this.tv_added = (TextView) itemView.findViewById(R.id.tv_added);
             this.img_pic = (ImageView) itemView.findViewById(R.id.img_pic);
+            this.rec_tag = (RecyclerView) itemView.findViewById(R.id.rec_tag);
         }
     }
 }

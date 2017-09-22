@@ -2,6 +2,7 @@ package cn.zy.base.shopping.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import cn.zy.base.shopping.mian.design.IItemAddBack;
 import cn.zy.base.shopping.mian.design.m.PublishDesignInfo;
 import cn.zy.base.shopping.mian.wishList.IItemclickBack;
 import cn.zy.base.shopping.mian.wishList.m.WishInfo;
+import cn.zy.base.shopping.widget.DividerGridItemDecoration;
 
 
 /**
@@ -33,6 +35,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Anchor
         this.mContext = mContext;
         this.mData = mData;
         this.itemclickBack = itemclickBack;
+
     }
 
     @Override
@@ -72,6 +75,12 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Anchor
                 itemclickBack.backdelete(mData.get(position));
             }
         });
+        LinearLayoutManager manager = new LinearLayoutManager(mContext);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        holder.rec_tag.setLayoutManager(manager);
+        WishListTagAdapter ad = new WishListTagAdapter(mContext, info.getTags());
+        holder.rec_tag.setAdapter(ad);
+
     }
 
     public PublishDesignInfo getInfoFromWishInfo(WishInfo wishinfo) {
@@ -106,6 +115,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Anchor
         TextView tv_action_add;
         TextView tv_action_delete;
         ImageView img_pic;
+        RecyclerView rec_tag;
 
         public AnchorHotViewHolder(View itemView) {
             super(itemView);
@@ -116,6 +126,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Anchor
             this.tv_action_add = (TextView) itemView.findViewById(R.id.tv_action_add);
             this.tv_action_delete = (TextView) itemView.findViewById(R.id.tv_action_delete);
             this.img_pic = (ImageView) itemView.findViewById(R.id.img_pic);
+            this.rec_tag = (RecyclerView) itemView.findViewById(R.id.rec_tag);
         }
     }
 }

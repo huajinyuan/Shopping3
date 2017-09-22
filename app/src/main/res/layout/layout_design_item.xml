@@ -105,39 +105,44 @@
                 android:textColor="@color/color_black_0D"
                 android:textSize="@dimen/sp_14" />
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_tag"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="25dp" />
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal">-->
 
 
-                <TextView
-                    android:id="@+id/tv_action_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_radius_blue"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/dp_5"
-                    android:paddingLeft="@dimen/dp_8"
-                    android:paddingRight="@dimen/dp_8"
-                    android:paddingTop="@dimen/dp_5"
-                    android:text="Other"
-                    android:textColor="@color/color_white" />
+            <!--<TextView-->
+            <!--android:id="@+id/tv_action_edit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/shape_radius_blue"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="@dimen/dp_5"-->
+            <!--android:paddingLeft="@dimen/dp_8"-->
+            <!--android:paddingRight="@dimen/dp_8"-->
+            <!--android:paddingTop="@dimen/dp_5"-->
+            <!--android:text="Other"-->
+            <!--android:textColor="@color/color_white" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:background="@drawable/shape_radius_blue"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/dp_5"
-                    android:paddingLeft="@dimen/dp_8"
-                    android:paddingRight="@dimen/dp_8"
-                    android:paddingTop="@dimen/dp_5"
-                    android:text="Color"
-                    android:textColor="@color/color_white" />
-            </LinearLayout>
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:background="@drawable/shape_radius_blue"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="@dimen/dp_5"-->
+            <!--android:paddingLeft="@dimen/dp_8"-->
+            <!--android:paddingRight="@dimen/dp_8"-->
+            <!--android:paddingTop="@dimen/dp_5"-->
+            <!--android:text="Color"-->
+            <!--android:textColor="@color/color_white" />-->
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 
@@ -153,12 +158,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_btn"
-                android:textColor="@color/textcolor_selector"
                 android:gravity="center"
                 android:paddingBottom="@dimen/dp_5"
                 android:paddingTop="@dimen/dp_5"
                 android:text="Add To Wish List"
-                />
+                android:textColor="@color/textcolor_selector" />
 
             <TextView
                 android:id="@+id/tv_added"
